@@ -12,7 +12,7 @@ class Blog extends Component {
         selectedPostId: null
     };
 
-    componentDidMount() {
+    componentDidMount () {
         axios.get("https://jsonplaceholder.typicode.com/posts")
             .then(response => {
                 const posts = response.data.slice(0, 4); //only get 4 posts
