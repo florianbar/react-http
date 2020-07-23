@@ -14,14 +14,21 @@ class Blog extends Component {
     componentDidMount() {
         axios.get("https://jsonplaceholder.typicode.com/posts")
             .then(response => {
-                this.setState({posts: response.data});
-                //console.log(response);
+                const posts = response.data.slice(0, 4); //only get 4 posts
+                const updatedPosts = posts.map(post => {
+                    return {
+                        ...post,
+                        author: "Flo"
+                    };
+                });
+                this.setState({posts: updatedPosts});
+                //console.log(updatedPosts);
             });
     }
 
     render () {
         const posts = this.state.posts.map(post => {
-            return <Post key={post.id} title={post.title} />;
+            return <Post key={post.id} title={post.title} author={post.author} />;
         });
 
         return (
