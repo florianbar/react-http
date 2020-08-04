@@ -11,6 +11,7 @@ class Posts extends Component {
     };
 
     componentDidMount () {
+        console.log(this.props);
         axiosInstance.get("/posts")
             .then(response => {
                 const posts = response.data.slice(0, 4); //only get 4 posts
@@ -40,7 +41,7 @@ class Posts extends Component {
                 return <Post 
                     key={post.id}
                     title={post.title} 
-                    author={post.author} 
+                    author={post.author}
                     clicked={() => this.postSelectedHandler(post.id)} />;
             });
         }
